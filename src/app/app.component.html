@@ -1,5 +1,52 @@
-<ul>
-  <li *ngFor="let task of tasks$ | async">
-    {{ task.title }}
-  </li>
-</ul>
+<main class="content">
+  <div class="col">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field class="form-field">
+        <input
+          matInput
+          type="text"
+          autocomplete="off"
+          formControlName="title"
+          placeholder="Enter Title"
+        />
+      </mat-form-field>
+      <mat-form-field class="form-field">
+        <textarea
+          matInput
+          type="text"
+          autocomplete="off"
+          formControlName="description"
+          placeholder="Enter Description"
+        ></textarea>
+      </mat-form-field>
+      <button
+        type="reset"
+        color="primary"
+        mat-flat-button
+        (click)="onSubmit()"
+        [disabled]="form.invalid"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+
+  <div class="col">
+    <section class="list">
+      <ng-container *ngIf="tasks$ | async as tasks">
+        <ng-container *ngIf="tasks.length > 0">
+          <mat-card *ngFor="let task of tasks" class="card">
+            <h4>
+              <b>{{ task.title }}</b>
+            </h4>
+            <mat-card-content>
+              <p>{{ task.description }}</p>
+            </mat-card-content>
+          </mat-card>
+        </ng-container>
+
+        <div *ngIf="tasks.length === 0">No task found.</div>
+      </ng-container>
+    </section>
+  </div>
+</main>

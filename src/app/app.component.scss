@@ -1,0 +1,30 @@
+.content {
+  display: flex;
+  gap    : 1rem;
+
+  padding   : 1rem;
+  box-sizing: border-box;
+
+  .col {
+    flex-grow: 1;
+
+    button {
+      width: 100%;
+    }
+  }
+}
+
+.list {
+  display  : flex;
+  flex-wrap: wrap;
+}
+
+.card {
+  width        : 100%;
+  padding      : 1rem;
+  margin-bottom: 1rem;
+}
+
+.form-field {
+  display: block;
+}
