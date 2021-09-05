@@ -1,6 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
@@ -14,9 +15,14 @@ import { RegisterComponent } from './feature/register/register.component';
 import { RegisterModule } from './feature/register/register.module';
 import { GraphQLModule } from './graphql.module';
 
+const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
+
 const routes: Routes = [
   {
-    path: '', component: TodoListComponent
+    path: '',
+    component: TodoListComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   {
     path: 'login', component: LoginComponent
@@ -43,7 +49,6 @@ const routes: Routes = [
     GraphQLModule,
     HttpClientModule,
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

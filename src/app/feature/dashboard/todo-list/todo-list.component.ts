@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { QueryRef } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -22,9 +24,11 @@ export class TodoListComponent implements OnInit {
   })
 
   constructor(
+    private router: Router,
     private fb: FormBuilder,
     private tasks: TasksGQL,
     private addTask: AddTaskGQL,
+    private auth: AngularFireAuth,
   ) { }
 
   ngOnInit(): void {
@@ -40,6 +44,10 @@ export class TodoListComponent implements OnInit {
       },
       error: ({ error }) => console.error(error)
     })
+  }
+
+  onLogout(): void {
+    this.auth.signOut().then(_ => this.router.navigate(['login']));
   }
 
   private loadTasks(): void {

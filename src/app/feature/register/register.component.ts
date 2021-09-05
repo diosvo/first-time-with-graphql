@@ -22,9 +22,6 @@ export class RegisterComponent {
 
   onRegister(): void {
     const { email, password } = this.registerForm.value;
-    this.auth.createUserWithEmailAndPassword(email, password).then(user => {
-      window.alert('Register Successfully!.')
-      this.router.navigate(['../'])
-    });
+    this.auth.createUserWithEmailAndPassword(email, password).then(_ => this.router.navigate(['../login']));
   }
 }
