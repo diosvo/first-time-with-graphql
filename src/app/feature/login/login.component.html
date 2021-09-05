@@ -1,1 +1,30 @@
-<p>login works!</p>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <mat-form-field class="form-field">
+    <input
+      matInput
+      type="text"
+      autocomplete="off"
+      placeholder="Email"
+      formControlName="email"
+    />
+  </mat-form-field>
+  <mat-form-field class="form-field">
+    <input
+      matInput
+      type="text"
+      autocomplete="off"
+      placeholder="Password"
+      formControlName="password"
+    />
+  </mat-form-field>
+  <button
+    type="reset"
+    color="primary"
+    mat-flat-button
+    (click)="onSubmit()"
+    [disabled]="form.invalid"
+  >
+    Submit
+  </button>
+  <a routerLink="../register">Create a user</a>
+</form>

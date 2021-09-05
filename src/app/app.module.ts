@@ -8,6 +8,8 @@ import { DashboardModule } from './feature/dashboard/dashboard.module';
 import { TodoListComponent } from './feature/dashboard/todo-list/todo-list.component';
 import { LoginComponent } from './feature/login/login.component';
 import { LoginModule } from './feature/login/login.module';
+import { RegisterComponent } from './feature/register/register.component';
+import { RegisterModule } from './feature/register/register.module';
 import { GraphQLModule } from './graphql.module';
 
 const routes: Routes = [
@@ -16,6 +18,9 @@ const routes: Routes = [
   } ,
   {
     path: 'login', component: LoginComponent
+  },
+  {
+    path: 'register', component: RegisterComponent
   }
 ]
 
@@ -30,6 +35,7 @@ const routes: Routes = [
 
     LoginModule,
     DashboardModule,
+    RegisterModule,
 
     GraphQLModule,
     HttpClientModule,

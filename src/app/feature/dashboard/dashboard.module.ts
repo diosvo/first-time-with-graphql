@@ -4,12 +4,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MaterialModuleModule } from 'src/app/material-module.module';
 import { TodoListComponent } from './todo-list/todo-list.component';
 
-
-
 @NgModule({
-  declarations: [
-    TodoListComponent
-  ],
+  declarations: [TodoListComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
