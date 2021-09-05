@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Apollo, QueryRef } from 'apollo-angular';
+import { QueryRef } from 'apollo-angular';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { IResponse, ITask } from "./models/table.interface";
-import { ADD_TASK, GET_TASK } from "./actions/tasks";
+import { AddTaskGQL, TasksGQL, TasksQuery } from "../generated/graphql";
 
 @Component({
   selector: 'app-root',
@@ -12,10 +11,9 @@ import { ADD_TASK, GET_TASK } from "./actions/tasks";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'first-time-with-graphql';
 
-  tasks$!: Observable<Array<ITask>>;
-  queryRef!: QueryRef<IResponse>;
+  tasks$!: Observable<TasksQuery['tasks']>;
+  queryRef!: QueryRef<TasksQuery, {}>;
 
   form: FormGroup = this.fb.group({
     title: ['', Validators.required],
@@ -24,28 +22,23 @@ export class AppComponent implements OnInit {
   })
 
   constructor(
-    private apollo: Apollo,
+    private tasks: TasksGQL,
+    private addTask: AddTaskGQL,
     private fb: FormBuilder
   ) { }
 
   ngOnInit(): void {
-    this.queryRef = this.apollo
-      .watchQuery<IResponse>({
-        query: GET_TASK
-      });
+    this.queryRef = this.tasks.watch();
     this.loadTasks();
   }
 
   async onSubmit(): Promise<void> {
-    await this.apollo.mutate({
-      mutation: ADD_TASK,
-      variables: this.form.value
-    }).subscribe({
+    await this.addTask.mutate(this.form.value).subscribe({
       next: () => {
         this.form.reset();
         this.queryRef.refetch();
       },
-      error: ({error}) => console.error(error)
+      error: ({ error }) => console.error(error)
     })
   }
 
