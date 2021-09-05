@@ -2,7 +2,7 @@
   <h2>
     <b>Register</b>
   </h2>
-  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
     <mat-form-field appearance="outline" class="form-field">
       <mat-label>Email</mat-label>
       <input matInput type="text" autocomplete="off" formControlName="email" />
@@ -11,6 +11,7 @@
       <mat-label>Password</mat-label>
       <input
         matInput
+        min="6"
         type="password"
         autocomplete="off"
         formControlName="password"
@@ -24,8 +25,8 @@
         type="reset"
         color="primary"
         mat-flat-button
-        (click)="onSubmit()"
-        [disabled]="form.invalid"
+        (click)="onRegister()"
+        [disabled]="registerForm.invalid"
       >
         Submit
       </button>

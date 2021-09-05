@@ -1,8 +1,10 @@
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire/compat';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
+import { environment } from 'src/environments/environment';
 import { AppComponent } from './app.component';
 import { DashboardModule } from './feature/dashboard/dashboard.module';
 import { TodoListComponent } from './feature/dashboard/todo-list/todo-list.component';
@@ -15,7 +17,7 @@ import { GraphQLModule } from './graphql.module';
 const routes: Routes = [
   {
     path: '', component: TodoListComponent
-  } ,
+  },
   {
     path: 'login', component: LoginComponent
   },
@@ -32,6 +34,7 @@ const routes: Routes = [
     BrowserModule,
     BrowserAnimationsModule,
     RouterModule.forRoot(routes),
+    AngularFireModule.initializeApp(environment.firebase),
 
     LoginModule,
     DashboardModule,

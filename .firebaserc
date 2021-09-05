@@ -1,0 +1,18 @@
+{
+  "targets": {
+    "first-time-with-graphql": {
+      "hosting": {
+        "first-time-with-gql": [
+          "first-time-with-graphql"
+        ]
+      }
+    },
+    "first-time-with-gql": {
+      "hosting": {
+        "first-time-with-graphql": [
+          "first-time-with-gql"
+        ]
+      }
+    }
+  }
+}
