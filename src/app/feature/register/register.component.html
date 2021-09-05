@@ -1,1 +1,34 @@
-<p>register works!</p>
+<mat-card [style.width.rem]="25">
+  <h2>
+    <b>Register</b>
+  </h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Email</mat-label>
+      <input matInput type="text" autocomplete="off" formControlName="email" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        type="password"
+        autocomplete="off"
+        formControlName="password"
+      />
+    </mat-form-field>
+
+    <!-- Actions -->
+    <div class="actions">
+      <a routerLink="../login">Back to login</a>
+      <button
+        type="reset"
+        color="primary"
+        mat-flat-button
+        (click)="onSubmit()"
+        [disabled]="form.invalid"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</mat-card>

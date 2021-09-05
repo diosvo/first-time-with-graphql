@@ -1,30 +1,34 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
-  <mat-form-field class="form-field">
-    <input
-      matInput
-      type="text"
-      autocomplete="off"
-      placeholder="Email"
-      formControlName="email"
-    />
-  </mat-form-field>
-  <mat-form-field class="form-field">
-    <input
-      matInput
-      type="text"
-      autocomplete="off"
-      placeholder="Password"
-      formControlName="password"
-    />
-  </mat-form-field>
-  <button
-    type="reset"
-    color="primary"
-    mat-flat-button
-    (click)="onSubmit()"
-    [disabled]="form.invalid"
-  >
-    Submit
-  </button>
-  <a routerLink="../register">Create a user</a>
-</form>
+<mat-card [style.width.rem]="25">
+  <h2>
+    <b>Login</b>
+  </h2>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Email</mat-label>
+      <input matInput type="text" autocomplete="off" formControlName="email" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Password</mat-label>
+      <input
+        matInput
+        type="password"
+        autocomplete="off"
+        formControlName="password"
+      />
+    </mat-form-field>
+
+    <!-- Actions -->
+    <div class="actions">
+      <a routerLink="../register" class="register-link">Create a user</a>
+      <button
+        type="reset"
+        color="primary"
+        mat-flat-button
+        (click)="onSubmit()"
+        [disabled]="form.invalid"
+      >
+        Submit
+      </button>
+    </div>
+  </form>
+</mat-card>
