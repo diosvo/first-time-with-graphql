@@ -1,7 +1,7 @@
 ## Development
 
 A lil demo app uses:
-- Hasura GraphQL and support by Apollo Angular
+- Hasura GraphQL and supported by Apollo Angular
 - Docker
 - Authentication - Firebase
 
